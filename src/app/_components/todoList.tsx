@@ -5,6 +5,12 @@ import { trpc } from "../_trpc/client";
 export default function TodoList() {
   const getTodos = trpc.getTodos.useQuery();
   const data = JSON.stringify(getTodos.data);
- 
-  return <div>{data}</div>;
+
+  const dick = trpc.getDick.useQuery();
+  const dickData = JSON.stringify(dick.data);
+  return (
+    <div>
+      {data} {dickData}
+    </div>
+  );
 }
