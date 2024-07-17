@@ -33,7 +33,7 @@ export const Chart: React.FC<ChartProps> = ({ dataPoints, netDiff }) => {
 
   return (
     <DynamicAreaChart
-      width={224}
+      width={220}
       height={90}
       data={data}
       margin={{ top: 5, right: 5, left: 5, bottom: 5 }}

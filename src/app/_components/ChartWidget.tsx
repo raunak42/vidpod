@@ -26,7 +26,7 @@ export const ChartWidget: React.FC<ChartWidgetProps> = ({
   }
 
   return (
-    <div className="w-full h-[201px] border-[1px] border-[#E4E4E7] rounded-[16px] flex flex-col justify-between mt-[176px] p-[16px]">
+    <div className="w-full h-[201px] border-[1px] border-[#E4E4E7] rounded-[16px] flex flex-col justify-between p-[16px]">
       <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-[8px]">
           <h1 className="font-[600] text-[16px] leading-[24px] text-[#27272A] border-b-[1px] border-dashed border-b-[#D4D4D8]">
