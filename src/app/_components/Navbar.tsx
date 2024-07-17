@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
             width={20}
           ></Image>
 
-          <div className="w-[206px] h-[56px] border-[1px] border-[#E4E4E7] rounded-[8px] flex flex-row gap-[8px] items-center px-[16px]">
+          <div className="w-[206px] h-[56px] border-[1px] border-[#E4E4E7] rounded-[8px] flex flex-row justify-between items-center px-[16px]">
             <div className="size-[32px] overflow-hidden rounded-full flex">
               <img src="/image.png" className="object-cover size-full"></img>
             </div>
