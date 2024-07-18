@@ -1,8 +1,8 @@
 "use client";
-import { videoLengthState } from "@/store/videoLength";
-import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
+import Image from "next/image";
+import { currentTimeState, videoLengthState, videoRefState } from "@/store/videoState";
 
 export const VideoPlayer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,13 +10,22 @@ export const VideoPlayer: React.FC = () => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [displayOverlay, setDisplayOverlay] = useState(false);
   const [overlayImage, setOverlayImage] = useState("");
-  const [videoLengthSeconds, setVideoLengthSeconds] = useRecoilState(videoLengthState);
+  const [, setVideoLengthSeconds] =
+    useRecoilState(videoLengthState);
+  const [, setCurrentTime] = useRecoilState(currentTimeState);
+  const [, setVideoRefAtom] = useRecoilState(videoRefState);
+
+  useEffect(() => {
+    if (videoRef) {
+      setVideoRefAtom(videoRef);
+    }
+  }, [setVideoRefAtom]);
 
   useEffect(() => {
     const videoLength = Math.round(videoRef.current?.duration!);
-    setVideoLengthSeconds(videoLength)
+    setVideoLengthSeconds(videoLength);
     console.log(videoLength);
-  },[]);
+  }, [setVideoLengthSeconds]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -26,14 +35,20 @@ export const VideoPlayer: React.FC = () => {
       setIsPlaying(!video.paused);
     };
 
+    const updateTime = () => {
+      setCurrentTime(video.currentTime);
+    };
+
     video.addEventListener("play", checkPlayState);
     video.addEventListener("pause", checkPlayState);
+    video.addEventListener("timeupdate", updateTime);
 
     return () => {
       video.removeEventListener("play", checkPlayState);
       video.removeEventListener("pause", checkPlayState);
+      video.removeEventListener("timeupdate", updateTime);
     };
-  }, []);
+  }, [setCurrentTime]);
 
   const togglePlay = () => {
     setDisplayOverlay(true);
@@ -111,7 +126,7 @@ export const VideoPlayer: React.FC = () => {
         ></video>
 
         {displayOverlay && (
-          <div className=" animate-ping absolute inset-0 left-[40%] top-[40%] flex items-center justify-center size-[20%] rounded-xl bg-black opacity-60">
+          <div className="animate-ping absolute inset-0 left-[40%] top-[40%] flex items-center justify-center size-[20%] rounded-xl bg-black opacity-60">
             <Image width={40} height={40} src={overlayImage} alt="alt" />
           </div>
         )}
@@ -176,11 +191,7 @@ export const VideoPlayer: React.FC = () => {
           <h1 className="font-[600] text-[14px] leading-[20px] text-[#71717A]">
             10s
           </h1>
-          <button
-            onClick={() => {
-              skip(10);
-            }}
-          >
+          <button onClick={() => skip(10)}>
             <Image
               width={20}
               height={20}
