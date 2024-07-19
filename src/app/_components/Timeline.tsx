@@ -10,22 +10,33 @@ import { Slider } from "./Slider";
 import { Timescale } from "./Timescale";
 import { useEffect, useRef, useState } from "react";
 import { Marker } from "./Marker";
+import { trpc } from "../_trpc/client";
 
+interface MarkerType {
+  id: number;
+  left: number;
+}
 
 export const Timeline: React.FC = () => {
-  const [videoLengthSeconds, setVideoLengthSeconds] =
-    useRecoilState(videoLengthState);
+  const [videoLengthSeconds] = useRecoilState(videoLengthState);
   const timeLineLength = videoLengthSeconds * 1.5;
   const [currentTime, setCurrentTime] = useRecoilState(currentTimeState);
-  const [videoRef, setVideoRefAtom] = useRecoilState(videoRefState);
+  const [videoRef] = useRecoilState(videoRefState);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [markers, setMarkers] = useState<MarkerType[]>([]);
 
-  const [markers, setMarkers] = useState([
-    { id: 0, left: 0 },
-    { id: 1, left: 60 },
-    { id: 2, left: 120 },
-    { id: 3, left: 180 },
-  ]);
+  const response = trpc.getMarkers.useQuery();
+  const adMarkers = response.data;
+
+  useEffect(() => {
+    if (adMarkers) {
+      const data = adMarkers.map((marker) => ({
+        id: marker.id,
+        left: marker.markerStart * 1.5,
+      }));
+      setMarkers(data);
+    }
+  }, [adMarkers]);
 
   const handleDrag = (id: number, newLeft: number) => {
     if (!containerRef.current) return;
@@ -52,8 +63,6 @@ export const Timeline: React.FC = () => {
         newLeft = Math.min(newLeft, nextMarker.left - markerWidth);
       }
 
-      console.log(`Marker ${id} distance from left: ${newLeft}px`);
-
       return prevMarkers.map((marker) =>
         marker.id === id ? { ...marker, left: newLeft } : marker
       );
@@ -68,7 +77,7 @@ export const Timeline: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-[300px] overflow-x-scroll flex flex-col border border-black px-[32px]">
+    <div className="w-full h-[300px] overflow-x-scroll thin-scrollbar flex flex-col px-[8px]">
       <div className="z-10">
         <Slider
           currentTime={currentTime}
@@ -77,22 +86,26 @@ export const Timeline: React.FC = () => {
         />
       </div>
 
-      <div className="z-0 h-[128px] w-fit bg-[#18181B] rounded-[8px] p-[8px]">
+      <div className="z-0 h-[128px] w-fit bg-[#18181B] rounded-[8px] p-[8px] overflow-hidden">
         <div
           ref={containerRef}
           style={{ width: timeLineLength }}
-          className="relative h-full rounded-[6px] bg-[#F0ABFC] flex items-center"
+          className="relative h-full rounded-[6px] bg-[#F0ABFC] flex items-center overflow-hidden"
         >
-          <WaveComponent audioFile="/audio.mp3" />
+          <div className="w-full  mt-[110px] opacity-60" >
+            <WaveComponent audioFile="/audio.mp3" />
+          </div>
 
-          {markers.map((marker) => (
-            <Marker
-              key={marker.id}
-              id={marker.id}
-              left={marker.left}
-              onDrag={handleDrag}
-            />
-          ))}
+          {markers.map((marker) => {
+            return (
+              <Marker
+                key={marker.id}
+                id={marker.id}
+                left={marker.left}
+                onDrag={handleDrag}
+              />
+            );
+          })}
         </div>
       </div>
 
