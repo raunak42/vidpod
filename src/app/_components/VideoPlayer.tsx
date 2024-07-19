@@ -122,7 +122,7 @@ export const VideoPlayer: React.FC = () => {
           controls
           ref={videoRef}
           className="rounded-[8px]"
-          src="/podcast-clip-2.mp4"
+          src="/clip.mp4"
         ></video>
 
         {displayOverlay && (
