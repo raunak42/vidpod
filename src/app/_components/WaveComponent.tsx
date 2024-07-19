@@ -1,4 +1,3 @@
-"use client"
 import { videoLengthState } from "@/store/videoState";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
