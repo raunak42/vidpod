@@ -15,7 +15,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: "http://vidpod.raunak42.in/api/trpc",
+          url: "https://vidpod.raunak42.in/api/trpc",
         }),
       ],
     })
