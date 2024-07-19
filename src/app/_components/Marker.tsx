@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { trpc } from "../_trpc/client";
 import { useRecoilState } from "recoil";
 import { adTypeState } from "@/store/adMarkerState";
+import { Toaster, toast } from "sonner";
+
 
 interface MarkerProps {
   left: number;
@@ -55,6 +57,7 @@ export const Marker: React.FC<MarkerProps> = ({ left, onDrag, id }) => {
         newStart: newLeft/1.5,
         adType: "Auto",
       });
+      toast.success("Marker set to new position.")
     };
 
     if (isDragging) {
