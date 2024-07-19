@@ -24,10 +24,10 @@ export const WaveComponent: React.FC<WaveComponentProps> = ({
         container: waveFormRef.current,
         waveColor: "#ffffff", 
         progressColor: "#ffffff", 
-        barWidth: 1, 
+        barWidth: 2, 
         barHeight: 1, 
-        height: 100, 
-        barGap: 2,
+        height: 140, 
+        barGap: 5,
       });
     }
 
