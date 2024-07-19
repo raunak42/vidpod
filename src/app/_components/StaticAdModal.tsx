@@ -108,8 +108,8 @@ export const StaticAdModal: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full flex flex-col">
-          <div className="w-full flex items-center justify-end">
+        <div className="w-full flex flex-col ">
+          <div className="w-full flex items-center justify-end ">
             <div className="border border-[#E4E4E7] h-[44] w-[200px] rounded-[6px] overflow-hidden flex items-center gap-[12px] px-[12px] py-[14px] bg-[#ffffff]">
               <Image
                 draggable={false}
@@ -124,16 +124,29 @@ export const StaticAdModal: React.FC = () => {
               ></input>
             </div>
           </div>
-          <div className="w-full overflow-y-scroll thin-scrollbar px-[24px] mt-[24px]">
-            <div className="space-y-[10px]">
-              {ads?.map((ad, index) => {
+          <div className="w-full h-full overflow-y-scroll thin-scrollbar px-[24px] mt-[24px]  flex items-center justify-center">
+            <div className="space-y-[10px] flex flex-col items-center justify-center">
+              <Image
+                draggable={false}
+                alt="img"
+                width={100}
+                height={100}
+                src={"/rocket.svg"}
+              />
+              <h1 className="font-[700] text-[16px] leading-[24px] text-[#27272A]">
+                Work in progress...!
+              </h1>
+
+              {/* {ads?.map((ad, index) => {
                 return (
                   <div
                     className=" py-[16px] px-[12px] w-full rounded-[8px] border border-[#E4E4E7] flex items-center justify-between"
                     key={index}
                   >
-                    <img
-                      className="rounded-[4px] w-[140px] h-[100px]"
+                    <Image
+                      width={140}
+                      height={100}
+                      className="rounded-[4px] "
                       alt="img"
                       src={ad.coverImage}
                     />
@@ -155,7 +168,7 @@ export const StaticAdModal: React.FC = () => {
                     <input type="checkbox" />
                   </div>
                 );
-              })}
+              })} */}
             </div>
           </div>
         </div>
