@@ -8,6 +8,7 @@ const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Vidpod",
+  icons:["/brandmark-white.svg"]
 };
 
 export default function RootLayout({
@@ -25,3 +26,4 @@ export default function RootLayout({
     </html>
   );
 }
+
