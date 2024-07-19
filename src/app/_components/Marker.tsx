@@ -69,7 +69,7 @@ export const Marker: React.FC<MarkerProps> = ({ left, onDrag, id }) => {
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, onDrag, id, dragOffset]);
+  }, [isDragging, onDrag, id, dragOffset, editMarker]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!markerRef.current) return;

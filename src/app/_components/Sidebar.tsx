@@ -33,7 +33,7 @@ export const Sidebar: React.FC = () => {
 
           <button className="border-[1px] border-[#E4E4E7] rounded-[8px] px-[16px] py-[12px] flex flex-row items-center justify-between">
             <div className="size-[32px] rounded-[4px] overflow-hidden">
-              <img src="/doac.jpeg" className="object-cover"></img>
+              <Image width={32} height={32} alt="img" src="/doac.jpeg" className="object-cover"></Image>
             </div>
 
             <h1 className="font-[700] text-[16px] leading-[24px] text-[#71717A]">

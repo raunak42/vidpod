@@ -40,7 +40,7 @@ export const MiniSlider: React.FC<MiniSliderProps> = ({
     if (unavailableStarts) {
       setIsUnavailable(unavailableStarts.includes(currentTime));
     }
-  }, [currentTime, unavailableStarts]);
+  }, [currentTime, unavailableStarts, setIsUnavailable]);
 
   return (
     <div className="w-full flex flex-col justify-center">

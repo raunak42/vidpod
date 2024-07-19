@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
 
           <button className="w-[206px] h-[56px] border-[1px] border-[#E4E4E7] rounded-[8px] flex flex-row justify-between items-center px-[16px]">
             <div className="size-[32px] overflow-hidden rounded-full flex">
-              <img src="/image.png" className="object-cover size-full"></img>
+              <Image width={62} height={64} alt="img" src="/image.png" className="object-cover size-full"></Image>
             </div>
 
             <h1 className="text-[16px] font-[700] leading-[24px] text-[#27272A]">

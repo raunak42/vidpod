@@ -27,26 +27,28 @@ export const ChartCarousel: React.FC = () => {
 
   // Handle scroll event and update active index
   useEffect(() => {
+    const carousel = carouselRef.current; // Capture the current value
+
     const handleScroll = () => {
-      if (carouselRef.current) {
-        const scrollLeft = carouselRef.current.scrollLeft;
+      if (carousel) {
+        const scrollLeft = carousel.scrollLeft;
         const chartWidth =
-          (carouselRef.current.children[0] as HTMLElement).offsetWidth +
+          (carousel.children[0] as HTMLElement).offsetWidth +
           parseInt(
-            getComputedStyle(carouselRef.current.children[0]).marginRight
+            getComputedStyle(carousel.children[0]).marginRight
           );
         const newIndex = Math.floor(scrollLeft / chartWidth);
         setActiveIndex(newIndex);
       }
     };
 
-    if (carouselRef.current) {
-      carouselRef.current.addEventListener("scroll", handleScroll);
+    if (carousel) {
+      carousel.addEventListener("scroll", handleScroll);
     }
 
     return () => {
-      if (carouselRef.current) {
-        carouselRef.current.removeEventListener("scroll", handleScroll);
+      if (carousel) {
+        carousel.removeEventListener("scroll", handleScroll);
       }
     };
   }, []);
