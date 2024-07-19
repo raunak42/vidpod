@@ -19,8 +19,8 @@ interface SliderProps {
     const [isDragging, setIsDragging] = useState(false);
     const timelineRef = useRef<HTMLDivElement>(null);
   
-    const [videoLengthSeconds, setVideoLengthSeconds] =
-      useRecoilState(videoLengthState);
+      const [videoLengthSeconds, setVideoLengthSeconds] =
+        useRecoilState(videoLengthState);
     const timeLineLength = videoLengthSeconds * 1.5;
   
     const handleMouseDown = (e: React.MouseEvent) => {
