@@ -25,13 +25,13 @@ export const Sidebar: React.FC = () => {
     <div className=" w-[320px] border-r-[1px] border-r-[#E4E4E7] p-[32px] flex flex-col justify-between">
       <div className="flex flex-col">
         <div className="flex flex-col gap-[16px]">
-          <div className="bg-[#18181B] flex flex-row items-center justify-center py-[12px] rounded-[6px]">
+          <button className="bg-[#18181B] flex flex-row items-center justify-center py-[12px] rounded-[6px]">
             <h1 className="text text-[#FAFAFA] font-[500] text-[14px] leading-[20px]">
               Create an episode
             </h1>
-          </div>
+          </button>
 
-          <div className="border-[1px] border-[#E4E4E7] rounded-[8px] px-[16px] py-[12px] flex flex-row items-center justify-between">
+          <button className="border-[1px] border-[#E4E4E7] rounded-[8px] px-[16px] py-[12px] flex flex-row items-center justify-between">
             <div className="size-[32px] rounded-[4px] overflow-hidden">
               <img src="/doac.jpeg" className="object-cover"></img>
             </div>
@@ -46,7 +46,7 @@ export const Sidebar: React.FC = () => {
               height={16}
               width={16}
             ></Image>
-          </div>
+          </button>
         </div>
 
         <div className="flex flex-col w-full gap-[32px] mt-[32px]">
@@ -71,12 +71,12 @@ export const Sidebar: React.FC = () => {
 
 const NavItems = ({ text, src }: { text: string; src: string }) => {
   return (
-    <div className="flex flex-row items-center gap-[16px]">
+    <div className="flex flex-row items-center gap-[16px] ">
       <Image alt="home" src={`/${src}.svg`} height={20} width={20}></Image>
 
-      <h1 className="font-[700] text-[24px] leading-[32px] text-[#71717A]">
+      <button className="font-[700] text-[24px] leading-[32px] text-[#71717A] hover:text-[#27272A]">
         {text}
-      </h1>
+      </button>
     </div>
   );
 };
@@ -89,9 +89,9 @@ const MenuItems = ({ text, src }: { text: string; src: string }) => {
     <div className="flex flex-row items-center gap-[12px]">
       <Image alt="home" src={`/${src}.svg`} height={20} width={20}></Image>
 
-      <h1 className="font-[700] text-[16px] leading-[24px] text-[#71717A]">
+      <button className="font-[700] text-[16px] leading-[24px] text-[#71717A] hover:text-[#27272A]">
         {text}
-      </h1>
+      </button>
 
       {text === "Demo mode" && (
         <div
