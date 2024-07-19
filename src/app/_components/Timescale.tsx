@@ -35,7 +35,7 @@ export const Timescale: React.FC<TimescaleProps> = ({timeLineLength, videoLength
   );
 };
 
-function formatSeconds(seconds: number): string {
+export function formatSeconds(seconds: number): string {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = Math.floor(seconds % 60);
