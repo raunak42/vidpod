@@ -15,7 +15,7 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: "http://localhost:3000/api/trpc",
+          url: process.env.BASE_URL_PROD!,
         }),
       ],
     })
