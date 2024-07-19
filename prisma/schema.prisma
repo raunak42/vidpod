@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,16 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum AdType {
-  A_B
-  STATIC
-  AUTO
+model Ad {
+  id            Int        @id @unique @default(autoincrement())
+  length        Int
+  name          String
+  company       String
+  coverImage    String
+  videoUrl      String
+  publishedDate String
+  adMarker      AdMarker[]
 }
 
 model AdMarker {
-  id       Int    @id @default(autoincrement())
-  adStart  Int
-  adLength Int
-  adType   AdType
-  adUrl    String
+  id          Int        @id @default(autoincrement())
+  markerType  String
+  markerStart Int
+  ads         Ad[]
 }
